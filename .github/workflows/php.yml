@@ -1,0 +1,26 @@
+name: PHP Composer
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run test suite
+      run: vendor/bin/phpunit --configuration config/phpunit.xml
+
+    - name: Check codestyle
+      run: vendor/bin/phpcs --extensions=php --standard=./vendor/philippwitzmann/codingstandard/src/phpcs/Production/rulesetWithoutPHPC.xml src
+
+    - name: Check MessDetector
+      run: vendor/bin/phpmd src text ./vendor/philippwitzmann/codingstandard/src/phpmd/phpmd.xml --suffixes php
+
+    - name: Check PhpStan
+      run: vendor/bin/phpstan --level=max analyse src

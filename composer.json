@@ -1,0 +1,35 @@
+{
+    "name": "philippwitzmann/cache",
+    "description": "Cache Framework",
+    "type": "library",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Philipp Witzmann",
+            "email": "philipp@philippwitzmann.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "philippwitzmann/date-time-handler": "~1.2",
+        "predis/predis": "1.1.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.1",
+        "philippwitzmann/codingstandard": "~3.0",
+        "philippwitzmann/testing": "~1.0"
+    },
+    "suggest": {
+        "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol",
+        "ext-curl": "Allows access to Webdis when paired with phpiredis"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhilippWitzmann\\Cache\\": [
+                "src/",
+                "tests/"
+            ]
+        }
+    },
+    "version": "1.3.1"
+}

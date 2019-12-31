@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Paths are relative to this xml file's location. -->
+<phpunit
+        colors="true"
+        stopOnFailure="false">
+    <logging>
+        <log type="junit" target="../reports/Junit/phpunit.xml" />
+        <log type="coverage-clover" target="../reports/coverage.xml"/>
+    </logging>
+    <testsuites>
+        <testsuite name="Tests">
+            <directory>../tests/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">../src</directory>
+        </whitelist>
+    </filter>
+    <php>
+        <ini name="memory_limit" value="3584M"/>
+    </php>
+</phpunit>
