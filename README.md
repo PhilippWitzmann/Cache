@@ -6,7 +6,7 @@ Cache implementations
 ## Installation
 
 ````bash
-composer require contsult/cache
+composer require philippwitzmann/cache
 ````
 
 ## Usage

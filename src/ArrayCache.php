@@ -10,7 +10,7 @@ use InvalidArgumentException;
 /**
  * This class implements an array cache. Array Cache is not shareable between session and processes!
  *
- * @author Philipp Witzmann <witzmann@contsult.com>
+ * @author Philipp Witzmann <philipp@philippwitzmann.de>
  */
 class ArrayCache extends CacheHandler implements Cache
 {

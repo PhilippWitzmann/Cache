@@ -8,7 +8,7 @@ namespace PhilippWitzmann\Cache;
  * All Cache Implementation need to implement this. It controls the basic functionalities
  * every Cache needs to have.
  *
- * @author Philipp Witzmann <witzmann@contsult.com>
+ * @author Philipp Witzmann <philipp@philippwitzmann.de>
  */
 interface Cache
 {

@@ -11,7 +11,7 @@ use Predis\Client;
 /**
  * This class implements the redis cache.
  *
- * @author Philipp Witzmann <witzmann@contsult.com>
+ * @author Philipp Witzmann <philipp@philippwitzmann.de>
  */
 class RedisCache extends CacheHandler implements Cache
 {

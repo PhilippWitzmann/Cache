@@ -13,7 +13,7 @@ use Predis\Client;
 /**
  * Testcase
  *
- * @author Philipp Witzmann <witzmann@contsult.com>
+ * @author Philipp Witzmann <philipp@philippwitzmann.de>
  */
 class RedisCacheTest extends TestCase
 {

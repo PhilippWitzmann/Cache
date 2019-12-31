@@ -11,7 +11,7 @@ use DateTimeZone;
 /**
  * Acts as a facade for multiple Cache Solutions.
  *
- * @author Philipp Witzmann <witzmann@contsult.com>
+ * @author Philipp Witzmann <philipp@philippwitzmann.de>
  */
 abstract class CacheHandler implements Cache
 {

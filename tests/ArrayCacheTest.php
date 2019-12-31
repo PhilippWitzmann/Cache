@@ -12,7 +12,7 @@ use InvalidArgumentException;
 /**
  * Testcase
  *
- * @author Philipp Witzmann <witzmann@contsult.com>
+ * @author Philipp Witzmann <philipp@philippwitzmann.de>
  */
 class ArrayCacheTest extends TestCase
 {

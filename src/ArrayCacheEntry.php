@@ -10,7 +10,7 @@ use PhilippWitzmann\DateTime\DateTime;
  * A simple data object to store value which should be persisted into the Array Cache.
  *
  * @internal
- * @author Philipp Witzmann <witzmann@contsult.com>
+ * @author Philipp Witzmann <philipp@philippwitzmann.de>
  */
 class ArrayCacheEntry
 {
