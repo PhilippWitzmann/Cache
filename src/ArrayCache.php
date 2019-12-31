@@ -50,12 +50,11 @@ class ArrayCache extends CacheHandler implements Cache
      */
     public function get(string $key)
     {
-        $arrayCacheEntry = $this->cache[$key];
-
         if (array_key_exists($key, $this->cache) === false)
         {
             return null;
         }
+        $arrayCacheEntry = $this->cache[$key];
 
         $timezone = new DateTimeZone('Europe/Berlin');
         $dateTime = $this->dateTimeHandler->createDateTime($timezone);
