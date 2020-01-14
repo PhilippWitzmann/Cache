@@ -6,6 +6,7 @@ namespace PhilippWitzmann\Cache;
 
 use DateTimeZone;
 use InvalidArgumentException;
+use PhilippWitzmann\DateTime\DateTimeHandler;
 
 /**
  * This class implements an array cache. Array Cache is not shareable between session and processes!
@@ -16,6 +17,12 @@ class ArrayCache extends CacheHandler implements Cache
 {
     /** @var ArrayCacheEntry[] */
     private $cache;
+
+    public function __construct(DateTimeHandler $dateTimeHandler)
+    {
+        parent::__construct($dateTimeHandler);
+        $this->cache = [];
+    }
 
     /**
      * Persists an entry into the cache for a given amount of time.
