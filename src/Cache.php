@@ -40,4 +40,13 @@ interface Cache
      * @return void
      */
     public function invalidate(string $key): void;
+
+    /**
+     * Invalidates cache entries matching a pattern with wildcard * making it unable to retrieve.
+     *
+     * @param string $key
+     *
+     * @return void
+     */
+    public function invalidateByWildcard(string $key): void;
 }

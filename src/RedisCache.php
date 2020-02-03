@@ -76,4 +76,32 @@ class RedisCache extends CacheHandler implements Cache
     {
         $this->client->expire($key, 0);
     }
+
+    /**
+     * Invalidates cache entries matching a pattern with wildcard * making it unable to retrieve.
+     *
+     * @param string $key
+     *
+     * @return void
+     */
+    public function invalidateByWildcard(string $key): void
+    {
+        $entries = $this->getKeys($key);
+        foreach ($entries as $entry)
+        {
+            $this->invalidate($entry);
+        }
+    }
+
+    /**
+     * Retrieves all keys matching a pattern
+     *
+     * @param string $key
+     *
+     * @return string[]
+     */
+    private function getKeys(string $key): array
+    {
+        return $this->client->keys($key);
+    }
 }
