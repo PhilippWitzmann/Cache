@@ -118,4 +118,64 @@ class ArrayCacheTest extends TestCase
 
         $this->assertSame($value, $result);
     }
+
+    public function testInvalidateByWildcard()
+    {
+        $keys     = [
+            'foo',
+            'fo1',
+            'test'
+        ];
+        $value    = 'bar';
+        $lifetime = 100;
+        foreach ($keys as $key) {
+            $this->subject->set($key, $value, $lifetime);
+        }
+
+        $timezone          = new DateTimeZone('Europe/Berlin');
+        $dateTime          = $this->dateTimeHandler->createDateTime($timezone);
+        $dateTimeInThePast = $this->dateTimeHandler->addSeconds($dateTime, $lifetime - 10);
+        $this->dateTimeHandler->setTest($dateTimeInThePast);
+
+        $this->subject->invalidateByWildcard('fo*');
+
+        $result = $this->subject->get('foo');
+        $this->assertSame(null, $result);
+
+        $result = $this->subject->get('fo1');
+        $this->assertSame(null, $result);
+
+        $result = $this->subject->get('test');
+        $this->assertSame('bar', $result);
+    }
+
+    public function testInvalidateByWildcardForAll()
+    {
+        $keys     = [
+            'foo',
+            'fo1',
+            'test'
+        ];
+        $value    = 'bar';
+        $lifetime = 100;
+        foreach ($keys as $key) {
+            $this->subject->set($key, $value, $lifetime);
+        }
+
+        $timezone          = new DateTimeZone('Europe/Berlin');
+        $dateTime          = $this->dateTimeHandler->createDateTime($timezone);
+        $dateTimeInThePast = $this->dateTimeHandler->addSeconds($dateTime, $lifetime + 1);
+        $this->dateTimeHandler->setTest($dateTimeInThePast);
+
+        $this->subject->invalidateByWildcard('*');
+
+        $result = $this->subject->get('foo');
+        $this->assertSame(null, $result);
+
+        $result = $this->subject->get('fo1');
+        $this->assertSame(null, $result);
+
+        $result = $this->subject->get('test');
+        $this->assertSame(null, $result);
+    }
 }

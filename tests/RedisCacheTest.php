@@ -26,6 +26,9 @@ class RedisCacheTest extends TestCase
     /** @var Client */
     private $mockedClient;
 
+    /** @var Client */
+    private $realClient;
+
     /**
      * Sets up the Testenvironment for each specific test.
      *
@@ -35,6 +38,11 @@ class RedisCacheTest extends TestCase
     {
         $this->dateTimeHandler = new DateTimeHandler();
         $this->mockedClient    = mock(Client::class);
+        $this->realClient      = new Client([
+            'scheme' => 'tcp',
+            'host'   => 'redis',
+            'port'   => 6379,
+        ]);
         $this->subject         = new RedisCache($this->dateTimeHandler, $this->mockedClient);
     }
 
@@ -133,5 +141,26 @@ class RedisCacheTest extends TestCase
         $result = $this->subject->get($key);
 
         $this->assertSame($value, $result);
+    }
+
+    public function testInvalidateWithWildcard()
+    {
+        $this->mockedClient->expects()->keys('*')->andReturn([
+            'foo',
+            'bar'
+        ]);
+        $this->mockedClient->expects()->expire('foo', 0);
+        $this->mockedClient->expects()->expire('bar', 0);
+        $this->subject->invalidateByWildcard('*');
+
+        $this->addToAssertionCount(1);
+    }
+
+    public function testInvalidateWithWildcardNoMatches()
+    {
+        $this->mockedClient->expects()->keys('*')->andReturn([]);
+        $this->subject->invalidateByWildcard('*');
+
+        $this->addToAssertionCount(1);
     }
 }
